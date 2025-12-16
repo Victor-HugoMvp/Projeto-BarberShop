@@ -6,6 +6,6 @@
     console.log('Dado salvo no localStorage:', teste);
 
     // Redireciona para a proxima pagina
-    window.location.href = '/html/profissional.html';
+    window.location.href = 'profissional.html';
  }
 
