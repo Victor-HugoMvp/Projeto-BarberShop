@@ -25,6 +25,8 @@
       margin: 0;
     }
 
+    /* --- Estilizacao da apresentacao --- */
+
     .subtitleService {
         color: #552800;
     }
@@ -63,6 +65,9 @@
         line-height: 1.2;
     }
 
+      /* ---------- */
+
+    /* --- estilizacao dos servicos --- */
     .servico {
       display: flex;
       justify-content: space-between;
@@ -107,6 +112,8 @@
     button:hover {
       background: #e9dbbb;
     }
+
+    /* --------- */
 
   /* --- Início dos Estilos Responsivos para Mobile --- */
     @media (max-width: 600px) {

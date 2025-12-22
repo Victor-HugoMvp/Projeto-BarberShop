@@ -1,3 +1,4 @@
+/* Funcao para atribuir o servico selecionado a h3 */
 document.addEventListener('DOMContentLoaded', () =>{
 
     const servico = localStorage.getItem('servicoSelecionado');
@@ -6,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () =>{
     // 2. Verifica se a informação existe e atualiza a tela
     if (servico && spanElement) {
         spanElement.textContent = servico;
-    } else if (spanElement) {
+    } else if (spanElement)
         // Caso o usuário acesse a segunda tela diretamente, mostra um texto padrão
         spanElement.textContent = 'Não Selecionado'; 
     }
-});
+);
 
 /**
  * Garante que a primeira letra de uma string esteja em maiúsculo (para o nome do mês).
@@ -28,7 +29,9 @@ function primeiraLetraMaiuscula(string) {
  * 1. FUNÇÃO PARA GERAR OS DADOS DOS PRÓXIMOS 7 DIAS
  */
 function gerarDiasDaSemana() {
+    //Variavel que recebe o construtor de data
     const hoje = new Date();
+    //Array que recebe os dias
     const dias = [];
 
     // Formatadores para garantir o português (pt-BR)
@@ -38,10 +41,12 @@ function gerarDiasDaSemana() {
     // Obter o mês e o ano para exibição (ex: Dezembro 2025)
     const formatadorMesAno = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric' });
 
+    // Recebe o mes e o ano e puxa a formatacao de primeira letra maiuscula
     let mesAnoFormatado = formatadorMesAno.format(hoje);
     mesAnoFormatado = primeiraLetraMaiuscula(mesAnoFormatado);
     const mesAno = mesAnoFormatado.replace(' de ', ' '); // Formata para "Dezembro 2025"
 
+    //Iteracao para receber os proximos dias e puxar para o array de dias 
     for (let i = 0; i < 7; i++) {
         const proximoDia = new Date(hoje);
         // Avança a data
@@ -100,15 +105,68 @@ function preencherCalendario() {
         
         // Adiciona um evento de clique (opcional, mas essencial para o agendamento)
         diaCard.addEventListener('click', () => {
-            console.log(`Dia selecionado: ${dia.diaSemana}, ${dia.diaNumero}`);
-            // Aqui você pode adicionar lógica para destacar o card
-            // E carregar os horários disponíveis (a seção de 10:20, 11:00, etc.)
-        });
+            document.querySelectorAll('.dia-card').forEach(card => card.classList.remove('selecionado'));
+            diaCard.classList.add('selecionado');
+
+        // 2. CHAMA A FUNÇÃO DE HORÁRIOS AQUI
+            renderizarHorarios();
+    
+            console.log(`Dia selecionado: ${dia.diaNumero}`);
+         });
 
         // Insere o card no contêiner
-        container.appendChild(diaCard);
-    });
+            container.appendChild(diaCard);
+        });
 }
 
-// Chama a função para iniciar o preenchimento da página
+// Chama a função para iniciar o preenchimento do calendario
 preencherCalendario();
+
+function gerarHorarios(horaInicio, minutosInicio, quantidade, intervalo) {
+    //Gera array para receber horarios
+    const horarios = [];
+
+    //Constructor de datas
+    let dataReferencia = new Date();
+
+    //Padrao para setar horas
+    dataReferencia.setHours(horaInicio, minutosInicio, 0);
+
+    for (let i = 0; i < quantidade; i++) {
+        const horaFormatada = dataReferencia.toLocaleTimeString('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        horarios.push(horaFormatada);
+        
+        // Adiciona os 40 minutos para o próximo loop
+        dataReferencia.setMinutes(dataReferencia.getMinutes() + intervalo);
+    }
+    return horarios;
+}
+
+// Funcao para inserir horarios no html
+function renderizarHorarios() {
+    const containerHorarios = document.getElementById('horarios-disponiveis');
+    if (!containerHorarios) return;
+
+    containerHorarios.innerHTML = ''; // Limpa antes de preencher
+
+    // Geramos, por exemplo, 8 horários começando 10:20 com intervalo de 40min
+    const listaHorarios = gerarHorarios(10, 20, 8, 40);
+
+    listaHorarios.forEach(horario => {
+        const botao = document.createElement('button');
+        botao.classList.add('horario-card');
+        botao.textContent = horario;
+
+        botao.addEventListener('click', () => {
+            // Remove seleção dos outros e marca o atual
+            document.querySelectorAll('.horario-card').forEach(b => b.classList.remove('selecionado'));
+            botao.classList.add('selecionado');
+            console.log("Horário escolhido:", horario);
+        });
+
+        containerHorarios.appendChild(botao);
+    });
+}
