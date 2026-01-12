@@ -1,0 +1,274 @@
+  body {
+      margin: 0;
+      background: #FFFFFF;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      background: #F2EAD0;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header img {
+      height: 80px;
+      margin-right: 20px;
+    }
+
+    header h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 60px;
+      color: #D97925;
+      margin: 0;
+    }
+
+     /* --- Estilizacao da apresentacao --- */
+
+    .subtitleService {
+        color: #552800;
+    }
+
+    .subtitleProfessional{
+         color: #552800;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 40px;
+    }
+
+    .paragrafoApresent{
+       margin: 0; 
+       font-size: 16px;
+    }
+
+    .titleBarber {
+        margin: 5px 0; 
+        font-weight: bold;
+        font-size: 22px; 
+        color: #592B11; 
+    }       
+
+    .titulo-secao {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 20px;
+      color: #592B11;
+      margin-bottom: 20px;
+    }
+
+    .texto-boas-vindas {
+        display: flex;
+        flex-direction: column; 
+        line-height: 1.2;
+    }
+
+
+    /* Estilização título de serviços */
+    .containerService {
+        width: 100%;
+        height: 20px;
+        margin: 0 auto 0px auto; 
+        text-align: center; /* Centraliza texto e elementos inline */
+    }
+
+    .containerService h2, 
+    .containerService h3 {
+    text-align: center;
+    }
+
+    .containerProfessionals {
+      display: flex;
+      justify-content:center;
+      margin: 0px auto 15px auto;
+      gap: 25px;
+    }
+
+    /* Estilização Cards dos Profissionais */
+    .professional-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .barbers {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .borderline {
+      border: none;
+      border-bottom: 1px solid #D5CFBC;
+      width: 40%;
+    }
+
+    .professionalName {
+      margin-top: 5px;
+    }
+
+      /* Container de todos os cards de dias */
+    .container-dias {
+        display: flex;
+        justify-content: center; /* Centraliza o bloco de 7 dias */
+        gap: 8px; /* Espaço entre cada card de dia */
+        margin: 20px 0;
+    }
+
+    .titulo-dias {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      color: #552800;
+    }
+
+    /* Estilo para cada card de dia (seg 8, ter 9, etc.) */
+    .dia-card {
+        display: flex;
+        flex-direction: column; /* Empilha a semana e o número */
+        align-items: center; /* Centraliza o texto */
+        padding: 10px 5px;
+        width: 60px; /* Largura fixa */
+        height: 60px;
+        border-radius: 5px;
+        cursor: pointer;
+        
+        /* Cores que simulam o protótipo: */
+        background-color: #f5f5f5; /* Fundo claro/bege */
+        color: #592B11; /* Cor do texto (marrom escuro) */
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+
+    .dia-card:hover {
+        background-color: #e9dbbb; 
+    }
+
+    .dia-semana {
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    .dia-numero {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .subtitleHour {
+       display: flex;
+       text-align: center;
+       justify-content: center;
+       color: #552800; 
+    }
+
+    .container-horarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* Estilização dos cards de horario*/  
+
+.horario-card {
+    background: #f5f5f5;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    color: #5d4037;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.horario-card.selecionado {
+    background: #5d4037;
+    color: white;
+}
+
+.buttonProfissional {
+  border: none;
+  color: #FFFFFF;
+  padding: 2px;
+  border-radius: 80%;
+  cursor: pointer;
+}
+
+.botaoProfissionalClicado{
+  background-color: #D97925 !important;
+}
+
+    button:hover {
+      background: #e9dbbb;
+    }
+
+  /* --- Início dos Estilos Responsivos para Mobile --- */
+    @media (max-width: 600px) {
+    
+    header {
+        flex-direction: column; 
+        padding: 15px 10px;
+    }
+
+    header img {
+        height: 60px; 
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    header h1 {
+        font-size: 40px; 
+    }
+
+    .container {
+        margin: 20px auto;
+        padding: 20px; 
+    }
+
+
+    .titulo-secao img {
+        width: 40px; 
+    }
+
+    .paragrafoApresent {
+        font-size: 14px; 
+    }
+
+    .titleBarber {
+        font-size: 20px;
+    }
+
+    
+    .servico {
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding: 15px 0;
+        gap: 10px;
+    }
+
+    .servico-info h3 {
+        font-size: 20px; 
+    }
+
+    .detalhes {
+        
+        display: flex;
+        flex-direction: column;
+    }
+
+    
+    button {
+        width: 100%; 
+        justify-content: center;
+        padding: 12px 0; 
+    }
+}

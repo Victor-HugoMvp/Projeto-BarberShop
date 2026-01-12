@@ -1,0 +1,178 @@
+  body {
+      margin: 0;
+      background: #FFFFFF;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      background: #F2EAD0;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header img {
+      height: 100px;
+      margin-right: 20px;
+    }
+
+    header h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 60px;
+      color: #D97925;
+      margin: 0;
+    }
+
+    /* --- Estilizacao da apresentacao --- */
+
+    .subtitleService {
+        color: #552800;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 40px;
+    }
+
+    .paragrafoApresent{
+       margin: 0; 
+       font-size: 16px;
+    }
+
+    .titleBarber {
+        margin: 5px 0; 
+        font-weight: bold;
+        font-size: 22px; 
+        color: #592B11; 
+    }       
+
+    .titulo-secao {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 20px;
+      color: #592B11;
+      margin-bottom: 20px;
+    }
+
+    .texto-boas-vindas {
+        display: flex;
+        flex-direction: column; 
+        line-height: 1.2;
+    }
+
+      /* ---------- */
+
+    /* --- estilizacao dos servicos --- */
+    .servico {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid #D5CFBC;
+    }
+
+    .servico-info h3 {
+      margin: 0;
+      font-size: 22px;
+      color: #552800;
+    }
+
+    .detalhes {
+      margin-top: 5px;
+      color: #552800;
+      font-size: 15px;
+    }
+
+    .detalhes span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 3px;
+    }
+
+    button {
+      background: #f7ecd1;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #552800;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #e9dbbb;
+    }
+
+    /* --------- */
+
+  /* --- Início dos Estilos Responsivos para Mobile --- */
+    @media (max-width: 600px) {
+    
+    header {
+        flex-direction: column; 
+        padding: 15px 10px;
+    }
+
+    header img {
+        height: 60px; 
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    header h1 {
+        font-size: 40px; 
+    }
+
+    .container {
+        margin: 20px auto;
+        padding: 20px; 
+    }
+
+
+    .titulo-secao img {
+        width: 40px; 
+    }
+
+    .paragrafoApresent {
+        font-size: 14px; 
+    }
+
+    .titleBarber {
+        font-size: 20px;
+    }
+
+    
+    .servico {
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding: 15px 0;
+        gap: 10px;
+    }
+
+    .servico-info h3 {
+        font-size: 20px; 
+    }
+
+    .detalhes {
+        
+        display: flex;
+        flex-direction: column;
+    }
+
+    
+    button {
+        width: 100%; 
+        justify-content: center;
+        padding: 12px 0; 
+    }
+}

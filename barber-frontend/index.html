@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barber Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel = "stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<!-- Header com icone e titulo barbershop -->
+<header>
+  <img src="images/corte-de-barba.png" alt="Logo" />
+  <h1>Barber Shop</h1>
+</header>
+
+<!-- Container com subtitulo e segundo icone -->
+<div class="container">
+  <div class="titulo-secao">
+    <img src="images/corte-de-barba.png" width="60" />
+        <div class="texto-boas-vindas">
+            <p class="paragrafoApresent">Seja bem-vindo ao serviço de agendamento da</p>
+                <h3 class="titleBarber">Barber Shop</h3> </div>
+        </div>
+
+
+  <h2 class="subtitleService">Serviços</h2>
+
+  <!-- Container com serviços e ação ao clicar para reservar serviço -->
+  <div class="servico">
+    <div class="servico-info">
+      <h3>Corte Adulto</h3>
+      <div class="detalhes">
+        <span><i class="bi bi-clock-fill"></i> 40 min</span>
+        <span><i class="bi bi-cash-stack"></i>R$ 40,00</span>
+      </div>
+    </div>
+    <button onclick="reservarServico(1, 'Corte Adulto')">
+      <i class="bi bi-calendar-check-fill"></i> Reservar
+    </button>
+  </div>
+
+  <div class="servico">
+    <div class="servico-info">
+      <h3>Corte Infantil</h3>
+      <div class="detalhes">
+        <span><i class="bi bi-clock-fill"></i> 40 min</span>
+        <span><i class="bi bi-cash-stack"></i>R$ 50,00</span>
+      </div>
+    </div>
+    <button onclick="reservarServico(2, 'Corte Infantil')">
+      <i class="bi bi-calendar-check-fill"></i> Reservar
+    </button>
+  </div>
+
+  <div class="servico">
+    <div class="servico-info">
+      <h3>Corte e Barba</h3>
+      <div class="detalhes">
+        <span><i class="bi bi-clock-fill"></i> 1h:20 min</span>
+        <span><i class="bi bi-cash-stack"></i>R$ 80,00</span>
+      </div>
+    </div>
+    <button onclick="reservarServico(3,'Corte e Barba')">
+      <i class="bi bi-calendar-check-fill"></i>Reservar
+    </button>
+  </div>
+</div>
+
+</body>
+    <script src="script/index.js"></script>
+</html>
