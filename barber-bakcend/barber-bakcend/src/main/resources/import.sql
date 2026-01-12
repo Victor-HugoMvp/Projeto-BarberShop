@@ -1,0 +1,2 @@
+INSERT INTO servicos (id_servico, nome, duracao, valor) VALUES (1, 'Corte Adulto', '40 min', 40.00);
+INSERT INTO profissionais (id_profissional, nome, foto_url) VALUES (1, 'Emerson', 'images/barber1.png');
