@@ -1,0 +1,158 @@
+body {
+      margin: 0;
+      background: #FFFFFF;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      background: #F2EAD0;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header img {
+      height: 100px;
+      margin-right: 20px;
+    }
+
+    header h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 60px;
+      color: #D97925;
+      margin: 0;
+    }
+
+    /* --- Estilizacao da apresentacao --- */
+
+    .subtitleService {
+        color: #552800;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 40px;
+    }
+
+    .paragrafoApresent{
+       margin: 0; 
+       font-size: 16px;
+    }
+
+    .titleBarber {
+        margin: 5px 0; 
+        font-weight: bold;
+        font-size: 22px; 
+        color: #592B11; 
+    }       
+
+    .titulo-secao {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 20px;
+      color: #592B11;
+      margin-bottom: 20px;
+    }
+
+    .texto-boas-vindas {
+        display: flex;
+        flex-direction: column; 
+        line-height: 1.2;
+    }
+
+
+    /* --- Estilizacao dos botoesa --- */
+
+    .container-botoes{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .botao-adicionar{
+        margin-right: 30px;
+        background-color: #f5f5f5;
+        width: 250px;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .botao-continuar {
+        width: 250px;
+        text-align: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .botao-continuar:hover {
+        background: #f5f5f5;
+    }
+
+   p {
+      color: #552800;
+   }   
+
+   h3 {
+      color: #552800;
+   }
+
+    .card-resumo {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+}
+
+    .btn-deletar {
+    background-color: #E1978B; /* Vermelho da lixeira */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 90px;
+    height: 90px;
+    justify-content: center;
+}
+    .btn-deletar .bi-trash3-fill {
+    color: #ff4d4d;
+    transition: transform 0.2s;
+    transform: scale(2.5);
+}
+
+.btn-deletar:hover {
+   background-color: #E1978B;
+}
+
+.btn-deletar:hover .bi-trash3-fill {
+    transform: scale(1.1); /* Dá um leve aumento ao passar o mouse */
+    color: #ff0000;
+}
+
+     button {
+      background: #f7ecd1;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #552800;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #e9dbbb;
+    }

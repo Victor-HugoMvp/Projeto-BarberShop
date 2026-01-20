@@ -14,10 +14,13 @@ public class Servico {
     private String nome;
 
     @Column
-    private String duracao;
+    private String horarioSelecionado;
 
     @Column
-    private double valor;
+    private  String dataSelecionada;
+
+    @Column
+    private String preco;
 
     public Long getId() {
         return idServico;
@@ -35,19 +38,26 @@ public class Servico {
         this.nome = nome;
     }
 
-    public String getDuracao() {
-        return duracao;
+    public String getHorarioSelecionado() {
+        return horarioSelecionado;
+    }
+    public void setHorarioSelecionado(String duracao) {
+        this.horarioSelecionado = horarioSelecionado;
     }
 
-    public void setDuracao(String duracao) {
-        this.duracao = duracao;
+    public String getPreco() {
+        return preco;
     }
 
-    public double getValor() {
-        return valor;
+    public void setPreco(double valor) {
+        this.preco = preco;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public String getDataSelecionada() {
+        return dataSelecionada;
+    }
+
+    public void setDataSelecionada(String dataSelecionada) {
+        this.dataSelecionada = dataSelecionada;
     }
 }

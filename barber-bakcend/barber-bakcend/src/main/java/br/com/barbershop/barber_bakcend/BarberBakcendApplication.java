@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class BarberBakcendApplication {
+public class  BarberBakcendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BarberBakcendApplication.class, args);

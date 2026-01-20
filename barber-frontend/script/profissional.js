@@ -1,10 +1,12 @@
 // --- FUNÇÕES AUXILIARES ---
 
+// Funcao para deixar primeira letra maiuscula
 function primeiraLetraMaiuscula(string) {
     if (!string) return '';
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// Funcao para salvar dados anteriores
 function atualizarAgendamento(novosDados) {
     let agendamento = JSON.parse(localStorage.getItem('agendamento')) || {};
     agendamento = { ...agendamento, ...novosDados };
@@ -108,12 +110,29 @@ function renderizarHorarios() {
         botao.textContent = horario;
 
         botao.addEventListener('click', () => {
+            // 1. Estilização visual
             document.querySelectorAll('.horario-card').forEach(b => b.classList.remove('selecionado'));
             botao.classList.add('selecionado');
             
-            // Salva o horário e redireciona
-            atualizarAgendamento({ horarioSelecionado: horario });
-            window.location.href = 'finalizar.html'; 
+            // 2. Coleta os dados temporários (Serviço, Profissional e Dia que já foram clicados)
+            let agendamentoTemporario = JSON.parse(localStorage.getItem('agendamento')) || {};
+            
+            // 3. Adiciona o horário e o nome do serviço (importante para o card)
+            agendamentoTemporario.horarioSelecionado = horario;
+            agendamentoTemporario.servicoNome = localStorage.getItem('servicoNome') || "Serviço";
+
+            // 4. Pega a lista do carrinho ou cria uma nova
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoServicos')) || [];
+
+            // 5. Adiciona o serviço completo à lista
+            carrinho.push(agendamentoTemporario);
+
+            // 6. Salva o carrinho e limpa o temporário para não dar conflito no próximo
+            localStorage.setItem('carrinhoServicos', JSON.stringify(carrinho));
+            localStorage.removeItem('agendamento'); 
+
+            // 7. Vai para a tela de finalização
+            window.location.href = 'agendamentos.html'; 
         });
 
         containerHorarios.appendChild(botao);
@@ -124,7 +143,7 @@ function renderizarHorarios() {
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Atualiza o nome do serviço no topo
-    const servico = localStorage.getItem('servicoSelecionado');
+    const servico = localStorage.getItem('servicoNome');
     const spanElement = document.getElementById('nome-servicoSelecionado');
     if (spanElement) spanElement.textContent = servico || 'Não Selecionado';
 

@@ -1,40 +1,64 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Localiza o container no HTML pelo ID correto
-    const container = document.getElementById('resumo-agendamento');
+document.getElementById('btn-finalizar').addEventListener('click', async function() {
+    // 1. Captura as informações do usuário dos inputs da tela
+    const nome = document.getElementById('nome-cliente').value;
+    const celular = document.getElementById('celular-cliente').value;
     
-    // 2. Recupera o objeto de agendamento do localStorage
-    const dados = JSON.parse(localStorage.getItem('agendamento'));
+    // 2. Recupera a lista de serviços (o carrinho) do localStorage
+    const carrinho = JSON.parse(localStorage.getItem('carrinhoServicos')) || [];
 
-    // Verifica se os dados existem antes de tentar gerar o card
-    if (!dados || !dados.horarioSelecionado) {
-        container.innerHTML = "<p class='aviso'>Nenhum agendamento encontrado.</p>";
+    // Validação básica
+    if (!nome || !celular || carrinho.length === 0) {
+        alert("Por favor, preencha todos os campos e certifique-se de ter serviços selecionados.");
         return;
     }
 
-    // 3. Formatação da data (ISO para formato brasileiro)
-    const dataObj = new Date(dados.diaSelecionadoISO);
-    const dataFormatada = dataObj.toLocaleDateString('pt-BR');
+    /* 3. MONTAGEM DO PAYLOAD (Corresponde ao AgendamentoRequestDTO)
+       A chave 'agendamentos' deve ter o mesmo nome da List no Java
+    */
+    const dadosParaEnviar = {
 
-    // 4. Injeta o HTML do card dentro do container
-    container.innerHTML = `
-        <div class="card-resumo">
-            <div class="info-servico">
-                <h3>${dados.servicoNome || "Corte Adulto"}</h3>
-                <p><i class="bi bi-clock-fill"></i> ${dataFormatada}, ${dados.horarioSelecionado}</p>
-                <p><i class="bi bi-cash-stack"></i> ${dados.servicoPreco || "R$ 40,00"}</p>
-                <p><strong>Profissional:</strong> ${dados.profissionalNome}</p>
-            </div>
-            <button class="btn-deletar" onclick="removerServico()">
-                <i class="bi bi-trash3-fill"></i>
-            </button>
-        </div>
-    `;
-});
+      clienteDto:{  
+        clienteNome: nome,
+        clienteCelular: celular,
+      },
 
-// Função para excluir o agendamento e limpar o localStorage
-function removerServico() {
-    if (confirm("Deseja remover este agendamento?")) {
-        localStorage.removeItem('agendamento');
-        window.location.href = 'index.html'; // Redireciona para a primeira tela
+        agendamentos: carrinho.map(item => ({
+            // Mapeia para o ItemServicoDTO
+            servicoId: item.servicoId,
+            servicoNome: item.servicoNome,
+            servicoPreco: item.servicoPreco,
+        profissionalDto:{
+            profissionalId: item.profissionalId,
+            profissionalNome: item.profissionalNome
+        },
+            horarioSelecionado: item.horarioSelecionado,
+            diaSelecionadoISO: item.diaSelecionadoISO
+        }))
+    };
+
+    try {
+        // 4. Envio para o endpoint do Spring Boot
+        const response = await fetch('http://localhost:8081/agendamentos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dadosParaEnviar)
+        });
+
+        if (response.ok) {
+            const resultado = await response.json();
+            alert("Agendamento confirmado com sucesso!");
+            
+            // Limpeza e redirecionamento
+            localStorage.clear();
+            window.location.href = 'sucesso.html';
+        } else {
+            const erro = await response.text();
+            alert("Erro no servidor: " + erro);
+        }
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+        alert("Não foi possível conectar ao servidor backend.");
     }
-}
+});
