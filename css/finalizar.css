@@ -108,16 +108,19 @@ button {
 }
 
 .botao-finalizar {
-    background-color: #f3e5ab;
+    background-color: #f7ecd1;
     color: #5d3a1a;
-    border: 1px solid #e0d195;
 }
 
 .botao-finalizar:hover {
-    background-color: #e0d195;
+    background-color: #f0f0f0;
 }
 
 .botao-voltar {
     background-color: #f0f0f0;
     color: #5d3a1a;
+}
+
+.botao-voltar:hover {
+    background-color: #f7ecd1;
 }

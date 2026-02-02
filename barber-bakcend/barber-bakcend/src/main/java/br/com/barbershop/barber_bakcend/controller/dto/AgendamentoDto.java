@@ -5,5 +5,6 @@ import java.util.List;
 
 public record AgendamentoDto(
     ClienteDto clienteDto,
-    List<ServicoDto> agendamentos
+    List<ServicoDto> agendamentos,
+    String diaSelecionadoISO
     ){}

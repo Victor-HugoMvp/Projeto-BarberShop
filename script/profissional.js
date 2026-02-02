@@ -97,47 +97,63 @@ function gerarHorarios(horaInicio, minutosInicio, quantidade, intervalo) {
     return horarios;
 }
 
-function renderizarHorarios() {
+async function renderizarHorarios() {
     const containerHorarios = document.getElementById('horarios-disponiveis');
     if (!containerHorarios) return;
 
-    containerHorarios.innerHTML = ''; 
-    const listaHorarios = gerarHorarios(10, 20, 8, 40);
+    const agendamentoTemp  = JSON.parse(localStorage.getItem('agendamento')) || {}
+    const profissionalId = agendamentoTemp.profissionalId;
+    const dataSelecionada = agendamentoTemp.diaSelecionadoISO;
 
-    listaHorarios.forEach(horario => {
-        const botao = document.createElement('button');
-        botao.classList.add('horario-card');
-        botao.textContent = horario;
+    if (!profissionalId || !dataSelecionada) {
+        console.error("Profissional ou Data não selecionados.");
+        return;
+    }
 
-        botao.addEventListener('click', () => {
-            // 1. Estilização visual
-            document.querySelectorAll('.horario-card').forEach(b => b.classList.remove('selecionado'));
-            botao.classList.add('selecionado');
-            
-            // 2. Coleta os dados temporários (Serviço, Profissional e Dia que já foram clicados)
-            let agendamentoTemporario = JSON.parse(localStorage.getItem('agendamento')) || {};
-            
-            // 3. Adiciona o horário e o nome do serviço (importante para o card)
-            agendamentoTemporario.horarioSelecionado = horario;
-            agendamentoTemporario.servicoNome = localStorage.getItem('servicoNome') || "Serviço";
+    containerHorarios.innerHTML = 'Carregando horários...';
 
-            // 4. Pega a lista do carrinho ou cria uma nova
-            let carrinho = JSON.parse(localStorage.getItem('carrinhoServicos')) || [];
+    try {
+        const response = await fetch(`http://localhost:8081/agendamentos/ocupados?profissionalId=${profissionalId}&data=${dataSelecionada}`);
+        const horariosOcupados = await response.json();
 
-            // 5. Adiciona o serviço completo à lista
-            carrinho.push(agendamentoTemporario);
+        containerHorarios.innerHTML = ''; 
+        const listaHorarios = gerarHorarios(10, 20, 8, 40);
 
-            // 6. Salva o carrinho e limpa o temporário para não dar conflito no próximo
-            localStorage.setItem('carrinhoServicos', JSON.stringify(carrinho));
-            localStorage.removeItem('agendamento'); 
+        listaHorarios.forEach(horario => {
+            const estaOcupado = horariosOcupados.some(h => h.startsWith(horario));
 
-            // 7. Vai para a tela de finalização
-            window.location.href = 'agendamentos.html'; 
+            if(!estaOcupado) {
+                const botao = document.createElement('buttton');
+                botao.classList.add('horario-card');
+                botao.textContent = horario;
+
+                botao.addEventListener('click', () => {
+                    // --- Sua lógica de salvar no carrinho (permanece igual) ---
+                    document.querySelectorAll('.horario-card').forEach(b => b.classList.remove('selecionado'));
+                    botao.classList.add('selecionado');
+                    
+                    let agendamentoTemporario = JSON.parse(localStorage.getItem('agendamento')) || {};
+                    agendamentoTemporario.horarioSelecionado = horario;
+                    agendamentoTemporario.servicoNome = localStorage.getItem('servicoNome') || "Serviço";
+
+                    let carrinho = JSON.parse(localStorage.getItem('carrinhoServicos')) || [];
+                    carrinho.push(agendamentoTemporario);
+
+                    localStorage.setItem('carrinhoServicos', JSON.stringify(carrinho));
+                    localStorage.removeItem('agendamento'); 
+                    window.location.href = 'agendamentos.html'; 
+                }); 
+                containerHorarios.appendChild(botao);
+            }
         });
+    }   
+    catch(error) {
+        console.error("Erro ao carregar horários ocupados:", error);
+        containerHorarios.innerHTML = 'Erro ao carregar horários.';
+    }
 
-        containerHorarios.appendChild(botao);
-    });
 }
+
 
 // --- INICIALIZAÇÃO ---
 
@@ -166,3 +182,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Gera o calendário
     preencherCalendario();
 });
+

@@ -21,18 +21,20 @@ document.getElementById('btn-finalizar').addEventListener('click', async functio
         clienteNome: nome,
         clienteCelular: celular,
       },
+      
+      diaSelecionadoISO: carrinho[0].diaSelecionadoISO,
 
         agendamentos: carrinho.map(item => ({
             // Mapeia para o ItemServicoDTO
             servicoId: item.servicoId,
             servicoNome: item.servicoNome,
             servicoPreco: item.servicoPreco,
+            horarioSelecionado: item.horarioSelecionado,
         profissionalDto:{
             profissionalId: item.profissionalId,
             profissionalNome: item.profissionalNome
         },
-            horarioSelecionado: item.horarioSelecionado,
-            diaSelecionadoISO: item.diaSelecionadoISO
+            
         }))
     };
 
@@ -52,7 +54,7 @@ document.getElementById('btn-finalizar').addEventListener('click', async functio
             
             // Limpeza e redirecionamento
             localStorage.clear();
-            window.location.href = 'sucesso.html';
+            window.location.href = 'index.html';
         } else {
             const erro = await response.text();
             alert("Erro no servidor: " + erro);

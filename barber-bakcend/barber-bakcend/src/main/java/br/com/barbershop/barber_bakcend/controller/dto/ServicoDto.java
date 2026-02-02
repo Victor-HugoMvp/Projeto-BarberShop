@@ -4,7 +4,6 @@ public record ServicoDto (
     Long servicoId,
     String servicoNome,
     String servicoPreco,
-    ProfissionalDto profissionalDto,
     String horarioSelecionado,
-    String diaSelecionadoISO
+    ProfissionalDto profissionalDto
     ){}

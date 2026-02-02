@@ -12,13 +12,6 @@ public class Servico {
 
     @Column(unique = true)
     private String nome;
-
-    @Column
-    private String horarioSelecionado;
-
-    @Column
-    private  String dataSelecionada;
-
     @Column
     private String preco;
 
@@ -38,26 +31,11 @@ public class Servico {
         this.nome = nome;
     }
 
-    public String getHorarioSelecionado() {
-        return horarioSelecionado;
-    }
-    public void setHorarioSelecionado(String duracao) {
-        this.horarioSelecionado = horarioSelecionado;
-    }
-
     public String getPreco() {
         return preco;
     }
 
     public void setPreco(double valor) {
         this.preco = preco;
-    }
-
-    public String getDataSelecionada() {
-        return dataSelecionada;
-    }
-
-    public void setDataSelecionada(String dataSelecionada) {
-        this.dataSelecionada = dataSelecionada;
     }
 }

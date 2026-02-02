@@ -31,11 +31,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+let indexParaRemover = null; // Variável para guardar o índice temporariamente
+
 function removerServico(index) {
-    if (confirm("Deseja remover este serviço?")) {
-        let lista = JSON.parse(localStorage.getItem('carrinhoServicos')) || [];
-        lista.splice(index, 1); // Remove o item pelo índice
-        localStorage.setItem('carrinhoServicos', JSON.stringify(lista));
-        window.location.reload(); // Recarrega para atualizar a tela
-    }
+    indexParaRemover = index;
+    const modal = document.getElementById('modal-confirmacao');
+    modal.style.display = 'flex'; // Exibe o modal
 }
+
+// Lógica para os botões do Modal
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal-confirmacao');
+    const btnCancelar = document.getElementById('btn-cancelar');
+    const btnConfirmar = document.getElementById('btn-confirmar-remocao');
+
+    // Se clicar em Cancelar, apenas fecha o modal
+    btnCancelar.addEventListener('click', () => {
+        modal.style.display = 'none';
+        indexParaRemover = null;
+    });
+
+    // Se clicar em Confirmar, executa a lógica de remoção
+    btnConfirmar.addEventListener('click', () => {
+        if (indexParaRemover !== null) {
+            let lista = JSON.parse(localStorage.getItem('carrinhoServicos')) || [];
+            lista.splice(indexParaRemover, 1);
+            localStorage.setItem('carrinhoServicos', JSON.stringify(lista));
+            
+            modal.style.display = 'none';
+            window.location.reload(); // Recarrega para atualizar a tela
+        }
+    });
+
+    // Fecha o modal se clicar fora da caixa branca
+    window.onclick = (event) => {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+});

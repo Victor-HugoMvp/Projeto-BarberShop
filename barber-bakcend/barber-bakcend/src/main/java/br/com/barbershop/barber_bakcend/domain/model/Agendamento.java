@@ -1,8 +1,18 @@
 package br.com.barbershop.barber_bakcend.domain.model;
 
+import br.com.barbershop.barber_bakcend.controller.dto.AgendamentoDto;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Entity(name = "agendamentos")
+@Table(name = "agendamentos", uniqueConstraints = {
+        @UniqueConstraint(
+                name = "uk_profissional_data_horario",
+                columnNames = {"profissional_id_profissional", "data_agendamento", "horario_agendamento"}
+        )
+})
 public class Agendamento {
 
     @Id
@@ -20,6 +30,28 @@ public class Agendamento {
     @ManyToOne
     @JoinColumn(name = "servico_id_servico")
     private  Servico servico;
+
+    @Column(name = "data_agendamento")
+    private java.time.LocalDate data;
+
+    @Column(name = "horario_agendamento")
+    private java.time.LocalTime horario;
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public LocalTime getHorario() {
+        return horario;
+    }
+
+    public void setHorario(LocalTime horario) {
+        this.horario = horario;
+    }
 
     public Cliente getCliente() {
         return cliente;
