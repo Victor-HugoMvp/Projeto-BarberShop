@@ -28,26 +28,56 @@
         </div>
       </div>
 
-        <div class="container">
-    <h3 class="form-title">Informação do usuário</h3>
-    
-    <div class="form-group">
-        <label for="nome-cliente">Nome</label>
-        <input type="text" id="nome-cliente" placeholder="Digite seu nome completo">
+    <div class="container">
+        <h3 class="form-title">Informação do usuário</h3>
+        
+        <div class="form-group">
+            <label for="nome-cliente">Nome</label>
+            <input type="text" id="nome-cliente" placeholder="Digite seu nome completo">
+        </div>
+
+        <div class="form-group">
+            <label for="celular-cliente">Celular(Whatsapp)</label>
+            <input type="tel" id="celular-cliente" placeholder="(00) 00000-0000">
+        </div>
+
+        <div class="container-botoes">
+            <button id="btn-finalizar" class="botao-finalizar">Finalizar</button>
+            <button onclick="window.history.back()" class="botao-voltar">Voltar</button>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="celular-cliente">Celular(Whatsapp)</label>
-        <input type="tel" id="celular-cliente" placeholder="(00) 00000-0000">
+    <div id="modal-alerta-info" class="modal-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="bi bi-exclamation-triangle-fill" style="font-size: 2rem; color: #d33;"></i>
+            </div>
+            <p>
+                Por favor, preencha todos os campos e certifique-se de 
+                ter serviços selecionados.
+            </p>
+            <div class="modal-footer">
+                <button id="btn-confirmar" class="btn-ok">OK</button>
+            </div>
+        </div>
     </div>
 
-    <div class="container-botoes">
-        <button id="btn-finalizar" class="botao-finalizar">Finalizar</button>
-        <button onclick="window.history.back()" class="botao-voltar">Voltar</button>
+    <div id="modal-finalizar" class="modal-container">
+        <div class="modal-content">
+            <div class="modal-header">
+               <i class="bi bi-check-circle-fill" style="font-size: 2rem; color: #28a745;"></i>
+            </div>
+            <p>
+                Agendamento concluído com sucesso!.
+            </p>
+            <div class="modal-footer">
+                <button id="btn-concluir-agendamento" class="btn-ok">OK</button>
+            </div>
     </div>
     </div>
   
 </body>
     <script src="script/finalizar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
     

@@ -1,3 +1,38 @@
+const modalAlerta = document.getElementById('modal-alerta-info');
+const modalFinalizar = document.getElementById('modal-finalizar');
+
+// CORREÇÃO: Adicionado o parâmetro 'm' para as funções funcionarem
+function abrirModal(m){
+    if(m) m.style.display = 'flex';
+}
+
+function fecharModal(m){
+    if(m) m.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Botão do modal de erro
+    const btnConfirmarAlerta = document.getElementById('btn-confirmar');
+    if(btnConfirmarAlerta){
+        btnConfirmarAlerta.addEventListener('click', () => fecharModal(modalAlerta));
+    }
+
+    // Botão do modal de sucesso (LIMPA O CARRINHO E VOLTA)
+    const btnConcluirGeral = document.getElementById('btn-concluir-agendamento');
+    if(btnConcluirGeral){
+        btnConcluirGeral.addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = 'index.html';    
+        });
+    }
+
+    // Fechar ao clicar fora
+    window.onclick = (event) => {
+        if(event.target == modalAlerta) fecharModal(modalAlerta);
+        if(event.target == modalFinalizar) fecharModal(modalFinalizar);
+    };
+});
+
 document.getElementById('btn-finalizar').addEventListener('click', async function() {
     // 1. Captura as informações do usuário dos inputs da tela
     const nome = document.getElementById('nome-cliente').value;
@@ -6,11 +41,10 @@ document.getElementById('btn-finalizar').addEventListener('click', async functio
     // 2. Recupera a lista de serviços (o carrinho) do localStorage
     const carrinho = JSON.parse(localStorage.getItem('carrinhoServicos')) || [];
 
-    // Validação básica
     if (!nome || !celular || carrinho.length === 0) {
-        alert("Por favor, preencha todos os campos e certifique-se de ter serviços selecionados.");
+        abrirModal(modalAlerta);
         return;
-    }
+    };
 
     /* 3. MONTAGEM DO PAYLOAD (Corresponde ao AgendamentoRequestDTO)
        A chave 'agendamentos' deve ter o mesmo nome da List no Java
@@ -50,11 +84,8 @@ document.getElementById('btn-finalizar').addEventListener('click', async functio
 
         if (response.ok) {
             const resultado = await response.json();
-            alert("Agendamento confirmado com sucesso!");
-            
-            // Limpeza e redirecionamento
-            localStorage.clear();
-            window.location.href = 'index.html';
+            abrirModal(modalFinalizar);
+            return;
         } else {
             const erro = await response.text();
             alert("Erro no servidor: " + erro);

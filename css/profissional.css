@@ -25,7 +25,31 @@
       margin: 0;
     }
 
+    a {
+      text-decoration: none;
+       color: #552800;
+    }
+
      /* --- Estilizacao da apresentacao --- */
+
+     .container-botao-voltar {
+        margin: 20px;
+        padding-left: 20px;
+        max-height: 30px;
+     }
+
+     .botao-voltar{
+        border: none;
+        background: #F2EAD0;
+        border-radius: 50px;
+        padding: 10px;
+       
+        font-size: 20px;
+     }
+
+     .botao-voltar:hover {
+        background-color: #f5f5f5;
+     }
 
     .subtitleService {
         color: #552800;
@@ -271,4 +295,66 @@
         justify-content: center;
         padding: 12px 0; 
     }
+
+    /* --- Início dos Estilos Responsivos para Mobile --- */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        padding: 15px 10px;
+    }
+
+    header img {
+        height: 50px;
+        margin-bottom: 5px;
+    }
+
+    header h1 {
+        font-size: 35px;
+    }
+
+    .container {
+        margin: 10px auto;
+        padding: 15px;
+        max-width: 95%; /* Garante que não cole nas bordas da tela */
+    }
+
+    /* Ajuste dos profissionais para não quebrarem a linha de forma estranha */
+    .containerProfessionals {
+        gap: 15px;
+        flex-wrap: wrap; /* Permite que os barbeiros desçam se a tela for muito pequena */
+    }
+
+    .barbers {
+        width: 80px; /* Reduz um pouco o tamanho das fotos no celular */
+        height: 80px;
+    }
+
+    /* CALENDÁRIO: Essencial para não gerar scroll horizontal */
+    .container-dias {
+        gap: 5px;
+        overflow-x: auto; /* Permite deslizar os dias para o lado se não couberem */
+        justify-content: flex-start; /* Alinha à esquerda para o scroll funcionar */
+        padding: 10px;
+        -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+    }
+
+    .dia-card {
+        min-width: 50px; /* Garante que o card mantenha o tamanho ao scrollar */
+        flex: 0 0 auto;
+    }
+
+    .borderline {
+        width: 80%; /* Aumenta a linha divisória no mobile */
+    }
+
+    /* Ajuste dos botões de horário */
+    .container-horarios {
+        gap: 8px;
+    }
+
+    .horario-card {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
 }
