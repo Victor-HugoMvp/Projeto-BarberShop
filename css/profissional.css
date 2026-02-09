@@ -32,19 +32,15 @@
 
      /* --- Estilizacao da apresentacao --- */
 
-     .container-botao-voltar {
-        margin: 20px;
-        padding-left: 20px;
+     .container-link-voltar {
+        margin: 10px;
+        padding-left: 10px;
         max-height: 30px;
      }
 
-     .botao-voltar{
-        border: none;
-        background: #F2EAD0;
-        border-radius: 50px;
+     .link-voltar{
         padding: 10px;
-       
-        font-size: 20px;
+        font-size: 17px;
      }
 
      .botao-voltar:hover {
@@ -235,126 +231,87 @@
       background: #e9dbbb;
     }
 
-  /* --- Início dos Estilos Responsivos para Mobile --- */
-    @media (max-width: 600px) {
-    
+@media (max-width: 600px) {
+    /* 1. Ajuste do Header para não ocupar tanto espaço */
     header {
-        flex-direction: column; 
-        padding: 15px 10px;
-    }
-
-    header img {
-        height: 60px; 
-        margin-right: 0;
-        margin-bottom: 10px;
+        flex-direction: column;
+        padding: 10px;
     }
 
     header h1 {
-        font-size: 40px; 
+        font-size: 32px; /* Reduzido para não empurrar tudo para baixo */
     }
 
+    /* 2. Correção da sobreposição no título e boas-vindas */
     .container {
-        margin: 20px auto;
-        padding: 20px; 
+        margin: 5px auto;
+        padding: 10px;
+        width: 95%;
     }
 
-
-    .titulo-secao img {
-        width: 40px; 
-    }
-
-    .paragrafoApresent {
-        font-size: 14px; 
+    .titulo-secao {
+        flex-direction: row; /* Mantém ícone e texto lado a lado */
+        align-items: center;
+        font-size: 14px;
     }
 
     .titleBarber {
-        font-size: 20px;
+        font-size: 18px;
     }
 
-    
-    .servico {
-        flex-direction: column; 
-        align-items: flex-start; 
-        padding: 15px 0;
-        gap: 10px;
+    /* Ajuste para o texto "Serviço Selecionado" não cortar */
+    .containerService {
+        height: auto; /* Removido o height fixo de 20px que causava sobreposição */
+        margin-bottom: 15px;
     }
 
-    .servico-info h3 {
-        font-size: 20px; 
+    .subtitleService {
+        font-size: 16px;
+        line-height: 1.4;
     }
 
-    .detalhes {
-        
-        display: flex;
-        flex-direction: column;
-    }
-
-    
-    button {
-        width: 100%; 
-        justify-content: center;
-        padding: 12px 0; 
-    }
-
-    /* --- Início dos Estilos Responsivos para Mobile --- */
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        padding: 15px 10px;
-    }
-
-    header img {
-        height: 50px;
-        margin-bottom: 5px;
-    }
-
-    header h1 {
-        font-size: 35px;
-    }
-
-    .container {
-        margin: 10px auto;
-        padding: 15px;
-        max-width: 95%; /* Garante que não cole nas bordas da tela */
-    }
-
-    /* Ajuste dos profissionais para não quebrarem a linha de forma estranha */
+    /* 3. Profissionais: Reduzindo o tamanho para caberem lado a lado */
     .containerProfessionals {
-        gap: 15px;
-        flex-wrap: wrap; /* Permite que os barbeiros desçam se a tela for muito pequena */
+        gap: 10px; /* Diminuído o espaço entre eles */
+        margin-bottom: 20px;
     }
 
     .barbers {
-        width: 80px; /* Reduz um pouco o tamanho das fotos no celular */
-        height: 80px;
+        width: 70px; /* Diminuído de 100px para 70px */
+        height: 70px;
     }
 
-    /* CALENDÁRIO: Essencial para não gerar scroll horizontal */
+    .professionalName {
+        font-size: 13px;
+    }
+
+    /* 4. Calendário: Garantindo que não quebre */
     .container-dias {
-        gap: 5px;
-        overflow-x: auto; /* Permite deslizar os dias para o lado se não couberem */
-        justify-content: flex-start; /* Alinha à esquerda para o scroll funcionar */
-        padding: 10px;
-        -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+        gap: 4px;
+        overflow-x: auto; /* Ativa o scroll lateral se necessário */
+        justify-content: flex-start; 
+        padding-bottom: 10px;
     }
 
     .dia-card {
-        min-width: 50px; /* Garante que o card mantenha o tamanho ao scrollar */
-        flex: 0 0 auto;
+        min-width: 45px; /* Reduzido para caber mais dias na tela */
+        height: 55px;
     }
 
-    .borderline {
-        width: 80%; /* Aumenta a linha divisória no mobile */
+    .dia-numero {
+        font-size: 16px;
+        margin-top: 5px;
     }
 
-    /* Ajuste dos botões de horário */
+    /* 5. Horários: Permitir que eles ocupem várias linhas sem sumir */
     .container-horarios {
+        display: flex;
+        flex-wrap: wrap; /* Importante para os horários não saírem da tela */
         gap: 8px;
     }
 
     .horario-card {
-        padding: 10px 12px;
-        font-size: 14px;
+        padding: 8px 10px;
+        font-size: 13px;
     }
-}
 }
