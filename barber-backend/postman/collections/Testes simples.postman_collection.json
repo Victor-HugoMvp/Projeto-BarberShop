@@ -1,0 +1,39 @@
+{
+  "info": {
+    "_postman_id": "bdc236e2-ea68-4299-b9e7-9c5523ab7f7a",
+    "name": "Testes simples",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "http://localhost:8080/cadastros",
+      "id": "5ad4c877-86eb-457a-8d3e-8dd20778c14e",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/cadastros/lista",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "cadastros",
+            "lista"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
