@@ -10,7 +10,7 @@ import java.time.LocalTime;
  * Esta classe é mapeada para tabela "agendamentos" e garante que não existam
  * conflitos de horário para o mesmo profissional através de uma constraint única.
  */
-@Entity(name = "agendamentos")
+@Entity
 @Table(name = "agendamentos", uniqueConstraints = {
         @UniqueConstraint(
                 name = "uk_profissional_data_horario",
@@ -46,6 +46,9 @@ public class Agendamento {
     /** Horário para o inicio do agendammento. */
     @Column(name = "horario_agendamento")
     private java.time.LocalTime horario;
+
+    @Column(name = "status_atendimento")
+    private String status = "ATIVO";
 
     public LocalDate getData() {
         return data;

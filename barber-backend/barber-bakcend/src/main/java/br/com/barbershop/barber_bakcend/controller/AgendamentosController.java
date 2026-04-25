@@ -2,14 +2,13 @@ package br.com.barbershop.barber_bakcend.controller;
 
 import br.com.barbershop.barber_bakcend.dto.AgendamentoDto;
 import br.com.barbershop.barber_bakcend.domain.model.Agendamento;
-import br.com.barbershop.barber_bakcend.service.AgendamentoService;
-import br.com.barbershop.barber_bakcend.service.BuscaAgendamentosService;
+import br.com.barbershop.barber_bakcend.dto.RetornoAgendamentosDto;
+import br.com.barbershop.barber_bakcend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.PublicKey;
 import java.util.List;
 
 /**
@@ -20,7 +19,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/agendamentos")
-@CrossOrigin(origins = "*")
 public class AgendamentosController {
 
     /** Servico que contém a lógica  de negócio de agendamentos.*/
@@ -29,6 +27,15 @@ public class AgendamentosController {
 
     @Autowired
     private BuscaAgendamentosService buscaAgendamentoService;
+
+    @Autowired
+    private DeletarAgendamentoService deletarAgendamentoService;
+
+    @Autowired
+    private AlterarProfissionalService alterarProfissionalService;
+
+    @Autowired
+    private LiberarAtendimendoService liberarAtendimendoService;
 
     /**
      * Cria um novo agendamento no sistema.
@@ -59,8 +66,28 @@ public class AgendamentosController {
     }
 
     @GetMapping("/todos_agendamentos")
-    public ResponseEntity<List<Agendamento>> listar(){
-        return  ResponseEntity.ok(buscaAgendamentoService.listaDeAgendamentos());
+    public ResponseEntity<List<RetornoAgendamentosDto>> listarResumo(){
+        List<RetornoAgendamentosDto> lista = buscaAgendamentoService.listaDeAgendamentos();
+
+        return  ResponseEntity.ok(lista);
+    }
+
+    @DeleteMapping("/deletar_agendamentos/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Long id){
+        deletarAgendamentoService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/atualizar_profissional/{id}")
+    public ResponseEntity<Void> atualizar(@PathVariable Long id, @RequestBody RetornoAgendamentosDto dto){
+        alterarProfissionalService.atualizarProfissional(id, dto.profissionalNome());
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/liberar/{id}")
+    public ResponseEntity<Void> liberar(@PathVariable Long id){
+        liberarAtendimendoService.finalizar(id);
+        return ResponseEntity.ok().build();
     }
 }
 

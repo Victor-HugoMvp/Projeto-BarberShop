@@ -3,7 +3,8 @@ package br.com.barbershop.barber_bakcend.domain.model;
 import jakarta.persistence.*;
 
 /** Representa a entidade de profissionais no sistema */
-@Entity(name = "profissionais")
+@Entity
+@Table(name = "profissionais")
 public class Profissional {
 
     /** Identificador único do profissional(chave primária) */

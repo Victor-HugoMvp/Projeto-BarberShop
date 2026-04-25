@@ -1,0 +1,139 @@
+:root {
+    --bg-color: #F8F4E1;
+    --header-bg: #F9EBC8;
+    --border-color: #5D2E17; /* Tom de marrom da imagem */
+    --text-color: #5D2E17;
+    --btn-red: #FF0000;
+    --btn-blue: #1A21FF;
+    --btn-green: #97FF1A;
+}
+
+
+body {
+      margin: 0;
+      background: #FFFFFF;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      background: #F2EAD0;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header img {
+      height: 100px;
+      margin-right: 20px;
+    }
+
+    header h1 {
+      font-family: "Great Vibes", cursive;
+      font-size: 60px;
+      color: #D97925;
+      margin: 0;
+    }
+
+    /* --- Estilizacao da apresentacao --- */
+
+    .subtitleService {
+        color: #552800;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 40px;
+    }
+
+    .paragrafoApresent{
+       margin: 0; 
+       font-size: 16px;
+    }
+
+    .titleBarber {
+        margin: 5px 0; 
+        font-weight: bold;
+        font-size: 22px; 
+        color: #592B11; 
+    }   
+    
+    /* --- Estilização da tabela --- */
+
+    .titulo-tabela {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #5D2E17;
+    }
+
+    .tabela-geral {
+        background-color: #f5ebd4;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        border: 2px solid #5D2E17;
+    }
+
+    .tabela-apontamento {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+
+    .tabela-apontamento th:nth-child(1) { width: 15%; } /* Nome */
+    .tabela-apontamento th:nth-child(2) { width: 15%; } /* Telefone */
+    .tabela-apontamento th:nth-child(3) { width: 15%; } /* Data/Hora */
+    .tabela-apontamento th:nth-child(4) { width: 12%; } /* Serviço */
+    .tabela-apontamento th:nth-child(5) { width: 12%; } /* Barbeiro */
+    .tabela-apontamento th:nth-child(6) { width: 8%; }  /* Valor */
+    .tabela-apontamento th:nth-child(7) { width: 23%; } /* Ações (Espaço maior) */
+
+    .tabela-apontamento th,
+    .tabela-apontamento td {
+       border: 1px solid #5D2E17;
+        padding: 12px 5px;
+        text-align: center;
+        background-color: white;
+        color: #5D2E17; 
+        vertical-align: middle;
+    }    
+
+    .tabela-apontamento thead th {
+    background-color: #F0E2C2;
+    font-weight: bold;
+    }   
+
+    .info-tabela {
+        font-weight: bold;
+    }
+
+/* O "Pulo do Gato": O container flexível dentro da célula */
+    .container-acoes {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+/* Reset de botões para não criarem sombras ou bordas extras */
+    .btn {
+        border: none;
+        border-radius: 4px;
+        padding: 6px 8px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 10px;
+        flex-shrink: 0;
+        text-transform: uppercase; 
+    }
+
+    .btn-delete { background-color: #FF0000; }
+    .btn-edit { background-color: #1A21FF; }
+    .btn-check { background-color: #009000;}
+
